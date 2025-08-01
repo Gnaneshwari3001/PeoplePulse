@@ -225,28 +225,46 @@ export function Login() {
                 </div>
               </div>
 
-              {/* Domain Authorization Instructions */}
-              <div className="text-xs text-center bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+              {/* Google Authentication Setup Instructions */}
+              <div className="text-xs text-center bg-orange-50 border border-orange-200 rounded-lg p-4 space-y-3">
                 <div className="flex items-center justify-center space-x-2">
-                  <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-4 h-4 bg-orange-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">!</span>
                   </div>
-                  <p className="font-medium text-blue-800">Google Login Setup Required</p>
+                  <p className="font-medium text-orange-800">Google Authentication Setup Required</p>
                 </div>
 
-                <div className="text-left space-y-2">
-                  <p className="text-blue-700 font-medium">To enable Google authentication:</p>
-                  <ol className="text-blue-700 space-y-1 text-xs list-decimal list-inside">
-                    <li>Go to <strong>Firebase Console</strong> → Your Project</li>
-                    <li>Navigate to <strong>Authentication</strong> → <strong>Settings</strong></li>
-                    <li>Click <strong>Authorized domains</strong></li>
-                    <li>Add this domain:</li>
-                  </ol>
-                  <code className="text-xs bg-blue-100 px-2 py-1 rounded block text-blue-800 font-mono">
+                <div className="text-left space-y-3">
+                  <div>
+                    <p className="text-orange-700 font-medium mb-2">Complete Firebase setup:</p>
+                    <ol className="text-orange-700 space-y-1 text-xs list-decimal list-inside ml-2">
+                      <li><strong>Enable Google Sign-in:</strong></li>
+                      <ul className="list-disc list-inside ml-4 space-y-1">
+                        <li>Go to Firebase Console → Authentication</li>
+                        <li>Click <strong>Sign-in methods</strong> tab</li>
+                        <li>Enable <strong>Google</strong> provider</li>
+                        <li>Set project support email</li>
+                      </ul>
+                      <li className="mt-2"><strong>Verify Authorized Domain:</strong></li>
+                      <ul className="list-disc list-inside ml-4">
+                        <li>In Authentication → <strong>Settings</strong></li>
+                        <li>Ensure this domain is listed:</li>
+                      </ul>
+                    </ol>
+                  </div>
+
+                  <code className="text-xs bg-orange-100 px-2 py-1 rounded block text-orange-800 font-mono">
                     {window.location.hostname}
                   </code>
-                  <p className="text-blue-600 mt-2">
-                    <strong>For now, please use email/password authentication below.</strong>
+
+                  <div className="bg-orange-100 rounded p-2">
+                    <p className="text-orange-800 font-medium text-xs">
+                      ⚠️ Both steps are required for Google login to work
+                    </p>
+                  </div>
+
+                  <p className="text-orange-600 mt-2 font-medium">
+                    Please use email/password authentication below for now.
                   </p>
                 </div>
               </div>
