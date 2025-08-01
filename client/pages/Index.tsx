@@ -145,6 +145,18 @@ const kpis = [
 ];
 
 export default function Index() {
+  const { currentUser } = useAuth();
+
+  const getUserName = () => {
+    if (currentUser?.displayName) {
+      return currentUser.displayName.split(' ')[0]; // Get first name
+    }
+    if (currentUser?.email) {
+      return currentUser.email.split('@')[0]; // Get email username
+    }
+    return 'User';
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Hero Section */}
