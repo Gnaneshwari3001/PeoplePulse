@@ -62,6 +62,34 @@ export function Header() {
           </Button>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden absolute top-16 left-0 right-0 bg-white border-b shadow-lg z-40">
+          <div className="px-4 py-4 space-y-4">
+            {/* Mobile Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search employees, tasks, policies..."
+                className="pl-10 bg-muted/50 border-0 focus-visible:ring-1 focus-visible:ring-primary"
+              />
+            </div>
+
+            {/* Quick Actions */}
+            <div className="grid grid-cols-2 gap-2">
+              <Button variant="outline" size="sm" className="h-12 flex flex-col space-y-1">
+                <Bell className="h-4 w-4" />
+                <span className="text-xs">Notifications</span>
+              </Button>
+              <Button variant="outline" size="sm" className="h-12 flex flex-col space-y-1">
+                <User className="h-4 w-4" />
+                <span className="text-xs">Profile</span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
