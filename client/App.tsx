@@ -7,14 +7,20 @@ import Index from "@/pages/Index";
 import NotFound from "@/pages/NotFound";
 import PlaceholderPage from "@/pages/PlaceholderPage";
 
-function App() {
+function AuthenticatedApp() {
+  const { currentUser } = useAuth();
+
+  if (!currentUser) {
+    return <Login />;
+  }
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-background">
         <Header />
         <Routes>
           <Route path="/" element={<Index />} />
-          
+
           {/* Module Routes - Placeholder pages for now */}
           <Route path="/tasks" element={<PlaceholderPage module="Task Center" description="Manage your tasks, deadlines, and project status" />} />
           <Route path="/team" element={<PlaceholderPage module="Team Directory" description="Browse team members, contact information, and organizational structure" />} />
@@ -28,12 +34,21 @@ function App() {
           <Route path="/calendar" element={<PlaceholderPage module="Smart Calendar" description="Events, meetings, holidays, and scheduling" />} />
           <Route path="/growth" element={<PlaceholderPage module="Growth & Feedback" description="Performance reviews, goals, and professional development" />} />
           <Route path="/support" element={<PlaceholderPage module="Support & Helpdesk" description="IT support, HR assistance, and help tickets" />} />
-          
+
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AuthenticatedApp />
+      <Toaster />
+    </AuthProvider>
   );
 }
 
