@@ -57,23 +57,37 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   async function loginWithGoogle() {
-    const provider = new GoogleAuthProvider();
-    const { user } = await signInWithPopup(auth, provider);
-    
-    // Check if user exists in database, if not create record
-    const userRef = ref(database, `users/${user.uid}`);
-    const snapshot = await get(userRef);
-    
-    if (!snapshot.exists()) {
-      await set(userRef, {
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        createdAt: new Date().toISOString(),
-        role: 'employee',
-        department: '',
-        status: 'active'
-      });
+    try {
+      const provider = new GoogleAuthProvider();
+
+      // Add additional scopes if needed
+      provider.addScope('profile');
+      provider.addScope('email');
+
+      const { user } = await signInWithPopup(auth, provider);
+
+      // Check if user exists in database, if not create record
+      const userRef = ref(database, `users/${user.uid}`);
+      const snapshot = await get(userRef);
+
+      if (!snapshot.exists()) {
+        await set(userRef, {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          createdAt: new Date().toISOString(),
+          role: 'employee',
+          department: '',
+          status: 'active',
+          loginMethod: 'google'
+        });
+      }
+    } catch (error: any) {
+      // Re-throw with more context for unauthorized domain
+      if (error.code === 'auth/unauthorized-domain') {
+        throw new Error(`Domain authorization required. Please add '${window.location.hostname}' to your Firebase authorized domains.`);
+      }
+      throw error;
     }
   }
 
