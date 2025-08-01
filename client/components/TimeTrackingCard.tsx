@@ -40,32 +40,70 @@ export function TimeTrackingCard() {
     return () => clearInterval(timer);
   }, []);
 
-  // Load today's work data from localStorage
+  // Load today's work data from Firebase
   useEffect(() => {
-    const today = new Date().toDateString();
-    const todayClockIn = localStorage.getItem(`clockIn_${today}`);
-    const todayClockOut = localStorage.getItem(`clockOut_${today}`);
-    
-    if (todayClockIn && !todayClockOut) {
-      setWorkData(prev => ({
-        ...prev,
-        status: "on-duty",
-        clockInTime: todayClockIn,
-      }));
-    } else if (todayClockIn && todayClockOut) {
-      const clockIn = new Date(todayClockIn);
-      const clockOut = new Date(todayClockOut);
-      const totalHours = (clockOut.getTime() - clockIn.getTime()) / (1000 * 60 * 60);
-      
-      setWorkData(prev => ({
-        ...prev,
-        status: "off-duty",
-        clockInTime: todayClockIn,
-        clockOutTime: todayClockOut,
-        totalHours: totalHours,
-      }));
+    if (!currentUser) return;
+
+    async function loadWorkData() {
+      try {
+        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+        const attendanceRef = ref(database, `attendance/${currentUser.uid}/${today}`);
+        const snapshot = await get(attendanceRef);
+
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const clockInTime = data.clockInTime;
+          const clockOutTime = data.clockOutTime;
+
+          if (clockInTime && !clockOutTime) {
+            setWorkData(prev => ({
+              ...prev,
+              status: "on-duty",
+              clockInTime: clockInTime,
+              lastClockIn: clockInTime,
+            }));
+          } else if (clockInTime && clockOutTime) {
+            const clockIn = new Date(clockInTime);
+            const clockOut = new Date(clockOutTime);
+            const totalHours = (clockOut.getTime() - clockIn.getTime()) / (1000 * 60 * 60);
+
+            setWorkData(prev => ({
+              ...prev,
+              status: "off-duty",
+              clockInTime: clockInTime,
+              clockOutTime: clockOutTime,
+              lastClockIn: clockInTime,
+              lastClockOut: clockOutTime,
+              totalHours: totalHours,
+            }));
+          }
+        }
+
+        // Load last clock in/out times from recent data
+        const userAttendanceRef = ref(database, `attendance/${currentUser.uid}`);
+        const userSnapshot = await get(userAttendanceRef);
+        if (userSnapshot.exists()) {
+          const allData = userSnapshot.val();
+          const dates = Object.keys(allData).sort().reverse();
+
+          for (const date of dates) {
+            const dayData = allData[date];
+            if (dayData.clockInTime && !workData.lastClockIn) {
+              setWorkData(prev => ({ ...prev, lastClockIn: dayData.clockInTime }));
+            }
+            if (dayData.clockOutTime && !workData.lastClockOut) {
+              setWorkData(prev => ({ ...prev, lastClockOut: dayData.clockOutTime }));
+            }
+            if (workData.lastClockIn && workData.lastClockOut) break;
+          }
+        }
+      } catch (error) {
+        console.error("Error loading work data:", error);
+      }
     }
-  }, []);
+
+    loadWorkData();
+  }, [currentUser]);
 
   const handlePulseIn = () => {
     const now = new Date().toISOString();
