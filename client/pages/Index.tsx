@@ -21,6 +21,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { TimeTrackingCard } from "@/components/TimeTrackingCard";
+import { Toaster } from "@/components/ui/toaster";
 
 const modules = [
   {
