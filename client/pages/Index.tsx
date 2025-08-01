@@ -192,19 +192,33 @@ export default function Index() {
 
           {/* KPI Dashboard */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            {kpis.map((kpi) => (
-              <Card key={kpi.label} className="bg-gradient-to-br from-white to-gray-50 border-0 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-gray-600">{kpi.label}</p>
-                      <p className="text-2xl font-bold text-gray-900">{kpi.value}</p>
-                    </div>
-                    <kpi.icon className={`w-6 h-6 ${kpi.color}`} />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {kpis.map((kpi) => {
+              const CardWrapper = kpi.clickable ? Link : 'div';
+              const cardProps = kpi.clickable ? { to: kpi.href } : {};
+
+              return (
+                <CardWrapper key={kpi.label} {...cardProps}>
+                  <Card className={`bg-gradient-to-br from-white to-gray-50 border-0 shadow-sm transition-all duration-200 ${
+                    kpi.clickable ? 'hover:shadow-lg hover:-translate-y-1 cursor-pointer' : 'hover:shadow-md'
+                  }`}>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-gray-600">{kpi.label}</p>
+                          <p className="text-2xl font-bold text-gray-900">{kpi.value}</p>
+                        </div>
+                        <kpi.icon className={`w-6 h-6 ${kpi.color}`} />
+                      </div>
+                      {kpi.clickable && (
+                        <div className="mt-2">
+                          <ArrowRight className="w-4 h-4 text-gray-400 ml-auto" />
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </CardWrapper>
+              );
+            })}
           </div>
         </div>
       </div>
