@@ -10,6 +10,55 @@ interface PlaceholderPageProps {
 }
 
 export default function PlaceholderPage({ module, description }: PlaceholderPageProps) {
+  const getModuleIcon = () => {
+    switch (module) {
+      case "Task Center": return CheckSquare;
+      case "Smart Calendar": return Calendar;
+      case "Time & Attendance": return Clock;
+      case "Team Directory": return Users;
+      case "Connect": return MessageSquare;
+      case "Claim Manager": return Receipt;
+      case "Salary Center": return DollarSign;
+      case "Policy Vault": return FileText;
+      case "Document Box": return FolderOpen;
+      case "Hiring Hub": return UserPlus;
+      case "Growth & Feedback": return TrendingUp;
+      case "Support & Helpdesk": return Headphones;
+      default: return Construction;
+    }
+  };
+
+  const getSampleData = () => {
+    switch (module) {
+      case "Task Center":
+        return [
+          { title: "Review Q4 Performance Reports", status: "In Progress", priority: "High", due: "Today" },
+          { title: "Update Employee Handbook", status: "Pending", priority: "Medium", due: "Dec 15" },
+          { title: "Prepare Budget Presentation", status: "Pending", priority: "High", due: "Dec 10" },
+          { title: "Schedule Team Meeting", status: "To Do", priority: "Low", due: "Dec 8" }
+        ];
+      case "Smart Calendar":
+        return [
+          { title: "Team Standup", time: "9:00 AM", type: "Meeting" },
+          { title: "Project Review", time: "2:00 PM", type: "Meeting" },
+          { title: "Sarah's Birthday", time: "All Day", type: "Event" },
+          { title: "Christmas Holiday", time: "Dec 25", type: "Holiday" }
+        ];
+      case "Time & Attendance":
+        return [
+          { date: "Dec 5, 2024", clockIn: "9:15 AM", clockOut: "6:30 PM", hours: "8.25h", status: "Complete" },
+          { date: "Dec 4, 2024", clockIn: "9:00 AM", clockOut: "6:00 PM", hours: "8.0h", status: "Complete" },
+          { date: "Dec 3, 2024", clockIn: "9:10 AM", clockOut: "6:15 PM", hours: "8.08h", status: "Complete" },
+          { date: "Dec 2, 2024", clockIn: "9:05 AM", clockOut: "6:10 PM", hours: "8.08h", status: "Complete" }
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const ModuleIcon = getModuleIcon();
+  const sampleData = getSampleData();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
