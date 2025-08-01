@@ -4,6 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
+import { ref, set, get, push } from "firebase/database";
+import { database } from "@/lib/firebase";
 
 interface TimeTrackingData {
   clockInTime: string | null;
