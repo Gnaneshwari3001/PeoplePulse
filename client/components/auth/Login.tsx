@@ -65,9 +65,19 @@ export function Login() {
         description: "You've successfully logged in with Google."
       });
     } catch (error: any) {
+      console.error("Google login error:", error);
+
+      let errorMessage = error.message || "An error occurred during Google login.";
+      let errorTitle = "Google Login Error";
+
+      if (error.code === 'auth/unauthorized-domain') {
+        errorTitle = "Domain Not Authorized";
+        errorMessage = "This domain needs to be added to Firebase Console. Using email/password login instead.";
+      }
+
       toast({
-        title: "Google Login Error",
-        description: error.message || "An error occurred during Google login.",
+        title: errorTitle,
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
