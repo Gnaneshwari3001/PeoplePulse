@@ -90,9 +90,17 @@ export function Login() {
     } catch (error: any) {
       console.error("Google login error:", error);
 
+      let errorMessage = error.message || "An error occurred during Google login.";
+      let errorTitle = "Google Login Error";
+
+      if (error.code === 'auth/operation-not-allowed') {
+        errorTitle = "Google Authentication Not Enabled";
+        errorMessage = "Google sign-in is not enabled in Firebase Console. Please enable it in Authentication → Sign-in methods.";
+      }
+
       toast({
-        title: "Google Login Error",
-        description: error.message || "An error occurred during Google login.",
+        title: errorTitle,
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
