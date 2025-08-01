@@ -194,7 +194,7 @@ export function Login() {
             </Button>
           </form>
 
-          {isAuthorizedDomain() ? (
+          {isAuthorizedDomain() && isGoogleAuthReady() ? (
             <>
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
