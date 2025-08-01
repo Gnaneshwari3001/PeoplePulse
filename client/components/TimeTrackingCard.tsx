@@ -287,6 +287,7 @@ export function TimeTrackingCard() {
             <Button
               onClick={handlePulseOut}
               className="flex-1 h-14 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              disabled={loading}
             >
               <StopCircle className="w-6 h-6 mr-2" />
               Pulse Out
