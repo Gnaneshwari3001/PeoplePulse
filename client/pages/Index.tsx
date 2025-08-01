@@ -291,6 +291,7 @@ export default function Index() {
           </CardContent>
         </Card>
       </div>
+      <Toaster />
     </div>
   );
 }
