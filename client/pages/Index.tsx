@@ -191,10 +191,54 @@ export default function Index() {
               </p>
             </div>
             <div className="hidden md:flex items-center space-x-3">
-              <Button className="bg-gradient-to-r from-brand-teal to-brand-blue hover:opacity-90">
-                <Plus className="w-4 h-4 mr-2" />
-                Quick Actions
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button className="bg-gradient-to-r from-brand-teal to-brand-blue hover:opacity-90">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Quick Actions
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>Quick Actions</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/tasks" className="flex items-center">
+                      <CheckSquare className="w-4 h-4 mr-2" />
+                      Create New Task
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/attendance" className="flex items-center">
+                      <Clock className="w-4 h-4 mr-2" />
+                      Request Leave
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/claims" className="flex items-center">
+                      <Receipt className="w-4 h-4 mr-2" />
+                      Submit Expense
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/support" className="flex items-center">
+                      <Headphones className="w-4 h-4 mr-2" />
+                      Raise Support Ticket
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/documents" className="flex items-center">
+                      <FolderOpen className="w-4 h-4 mr-2" />
+                      Upload Document
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/calendar" className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Schedule Meeting
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 
