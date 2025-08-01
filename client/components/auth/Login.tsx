@@ -26,7 +26,8 @@ export function Login() {
       '127.0.0.1',
       'peoplepulse-8d008.firebaseapp.com',
       'peoplepulse-8d008.web.app',
-      '1b2081f188af45d0ba027c46e4713bef-9dfc903354c14fd7962a353fc.fly.dev'
+      '1b2081f188af45d0ba027c46e4713bef-9dfc903354c14fd7962a353fc.fly.dev',
+      '1b2081f188af45d0ba027c46e4713bef-9dfc903354c14fd7962a353fc.projects.builder.codes'
     ];
     return authorizedDomains.includes(hostname);
   };
