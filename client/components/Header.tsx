@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
 export function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <header className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
