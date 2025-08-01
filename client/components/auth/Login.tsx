@@ -31,11 +31,9 @@ export function Login() {
     return authorizedDomains.includes(hostname);
   };
 
-  // For now, we'll show Google auth only on known working domains
-  // This will be enabled once Google sign-in is properly configured in Firebase
+  // Google authentication is now enabled and ready to use
   const isGoogleAuthReady = () => {
-    // You can enable this once Google sign-in is set up in Firebase Console
-    return false; // Set to true after enabling Google provider in Firebase
+    return true; // Google provider is now enabled in Firebase Console
   };
 
   async function handleSubmit(e: React.FormEvent) {
