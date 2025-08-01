@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { Login } from "@/components/auth/Login";
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { Toaster } from "@/components/ui/toaster";
 import Index from "@/pages/Index";
 import NotFound from "@/pages/NotFound";
 import PlaceholderPage from "@/pages/PlaceholderPage";
