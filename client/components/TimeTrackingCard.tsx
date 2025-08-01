@@ -156,14 +156,38 @@ export function TimeTrackingCard() {
     }
   };
 
-  const handlePulseOut = () => {
-    const now = new Date().toISOString();
-    const today = new Date().toDateString();
-    
-    if (workData.clockInTime) {
+  const handlePulseOut = async () => {
+    if (!currentUser || !workData.clockInTime || loading) return;
+
+    setLoading(true);
+    try {
+      const now = new Date().toISOString();
+      const today = new Date().toISOString().split('T')[0];
+
       const clockIn = new Date(workData.clockInTime);
       const clockOut = new Date(now);
       const totalHours = (clockOut.getTime() - clockIn.getTime()) / (1000 * 60 * 60);
+
+      // Update attendance record in Firebase
+      const attendanceRef = ref(database, `attendance/${currentUser.uid}/${today}`);
+      await set(attendanceRef, {
+        clockInTime: workData.clockInTime,
+        clockOutTime: now,
+        totalHours: totalHours,
+        date: today,
+        userId: currentUser.uid,
+        userEmail: currentUser.email,
+        userName: currentUser.displayName || currentUser.email,
+      });
+
+      // Log the clock-out event
+      const clockOutLogRef = ref(database, `attendance_logs/${currentUser.uid}`);
+      await push(clockOutLogRef, {
+        type: "clock_out",
+        timestamp: now,
+        date: today,
+        totalHours: totalHours,
+      });
 
       setWorkData(prev => ({
         ...prev,
@@ -173,14 +197,19 @@ export function TimeTrackingCard() {
         totalHours: totalHours,
       }));
 
-      // Store in localStorage
-      localStorage.setItem(`clockOut_${today}`, now);
-      localStorage.setItem("lastClockOut", now);
-
       toast({
         title: "⏰ Pulsed Out Successfully!",
         description: `You've clocked out at ${new Date(now).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}. Total: ${totalHours.toFixed(1)}h`,
       });
+    } catch (error) {
+      console.error("Error clocking out:", error);
+      toast({
+        title: "Error",
+        description: "Failed to clock out. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
