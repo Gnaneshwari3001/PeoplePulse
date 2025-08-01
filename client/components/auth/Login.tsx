@@ -189,6 +189,20 @@ export function Login() {
             Continue with Google
           </Button>
 
+          {/* Domain Authorization Note */}
+          <div className="text-xs text-muted-foreground text-center bg-amber-50 border border-amber-200 rounded-lg p-3">
+            <p className="font-medium text-amber-800">Domain Authorization Required</p>
+            <p className="text-amber-700 mt-1">
+              To enable Google login, add this domain to Firebase Console → Authentication → Settings → Authorized domains:
+            </p>
+            <code className="text-xs bg-amber-100 px-2 py-1 rounded mt-1 inline-block text-amber-800">
+              {window.location.hostname}
+            </code>
+            <p className="text-amber-700 mt-1">
+              For now, please use email/password login.
+            </p>
+          </div>
+
           <div className="text-center">
             <button
               type="button"
