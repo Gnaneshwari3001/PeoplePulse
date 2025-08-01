@@ -203,7 +203,7 @@ export function Login() {
             </p>
           </div>
 
-          <div className="text-center">
+          <div className="text-center space-y-3">
             <button
               type="button"
               className="text-sm text-muted-foreground hover:text-primary"
@@ -211,6 +211,24 @@ export function Login() {
             >
               {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
             </button>
+
+            {isLogin && (
+              <div className="border-t pt-3">
+                <p className="text-xs text-muted-foreground mb-2">Quick Demo Access:</p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="text-xs h-8"
+                  onClick={() => {
+                    setEmail("demo@peoplepulse.com");
+                    setPassword("demo123456");
+                  }}
+                >
+                  Fill Demo Credentials
+                </Button>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
