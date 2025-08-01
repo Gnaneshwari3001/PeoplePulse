@@ -14,9 +14,21 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const { login, signup, loginWithGoogle } = useAuth();
   const { toast } = useToast();
+
+  // Check if current domain is authorized for Google auth
+  const isAuthorizedDomain = () => {
+    const hostname = window.location.hostname;
+    const authorizedDomains = [
+      'localhost',
+      '127.0.0.1',
+      'peoplepulse-8d008.firebaseapp.com',
+      'peoplepulse-8d008.web.app'
+    ];
+    return authorizedDomains.includes(hostname);
+  };
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
