@@ -19,15 +19,17 @@ interface TimeTrackingData {
 
 export function TimeTrackingCard() {
   const { toast } = useToast();
+  const { currentUser } = useAuth();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [workData, setWorkData] = useState<TimeTrackingData>({
     clockInTime: null,
     clockOutTime: null,
     status: "off-duty",
-    lastClockIn: localStorage.getItem("lastClockIn"),
-    lastClockOut: localStorage.getItem("lastClockOut"),
+    lastClockIn: null,
+    lastClockOut: null,
     totalHours: 0,
   });
+  const [loading, setLoading] = useState(false);
 
   // Update current time every second
   useEffect(() => {
