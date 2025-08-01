@@ -138,10 +138,21 @@ const modules = [
 ];
 
 const kpis = [
-  { label: "Pending Tasks", value: "8", icon: CheckSquare, color: "text-blue-600" },
-  { label: "Today's Events", value: "3", icon: CalendarIcon, color: "text-purple-600" },
-  { label: "Leave Balance", value: "12", icon: Clock, color: "text-green-600" },
-  { label: "Next Pay Date", value: "Dec 1", icon: DollarSign, color: "text-emerald-600" },
+  { label: "Pending Tasks", value: "8", icon: CheckSquare, color: "text-blue-600", href: "/tasks", clickable: true },
+  { label: "Today's Events", value: "3", icon: CalendarIcon, color: "text-purple-600", href: "/calendar", clickable: true },
+  { label: "Leave Balance", value: "12", icon: Clock, color: "text-green-600", href: "/attendance", clickable: true },
+  { label: "Next Pay Date", value: "Dec 1", icon: DollarSign, color: "text-emerald-600", href: "/salary", clickable: false },
+];
+
+const holidays = [
+  { name: "Christmas Day", date: "Dec 25, 2024", type: "National Holiday" },
+  { name: "New Year's Day", date: "Jan 1, 2025", type: "National Holiday" },
+  { name: "Republic Day", date: "Jan 26, 2025", type: "National Holiday" },
+  { name: "Holi", date: "Mar 14, 2025", type: "Festival" },
+  { name: "Good Friday", date: "Apr 18, 2025", type: "Religious Holiday" },
+  { name: "Independence Day", date: "Aug 15, 2025", type: "National Holiday" },
+  { name: "Gandhi Jayanti", date: "Oct 2, 2025", type: "National Holiday" },
+  { name: "Diwali", date: "Oct 20, 2025", type: "Festival" }
 ];
 
 export default function Index() {
