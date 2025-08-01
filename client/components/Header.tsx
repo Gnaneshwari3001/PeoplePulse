@@ -12,8 +12,13 @@ export function Header() {
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
         {/* Logo and Brand */}
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" className="lg:hidden">
-            <Menu className="h-5 w-5" />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="lg:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-r from-brand-teal to-brand-blue rounded-lg flex items-center justify-center">
