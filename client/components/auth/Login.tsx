@@ -95,12 +95,24 @@ export function Login() {
     } catch (error: any) {
       console.error("Google login error:", error);
 
+      // Handle user-cancelled popup gracefully (don't show error)
+      if (error.code === 'auth/popup-closed-by-user') {
+        // User closed the popup, this is expected behavior - no error message needed
+        return;
+      }
+
       let errorMessage = error.message || "An error occurred during Google login.";
       let errorTitle = "Google Login Error";
 
       if (error.code === 'auth/operation-not-allowed') {
         errorTitle = "Google Authentication Not Enabled";
         errorMessage = "Google sign-in is not enabled in Firebase Console. Please enable it in Authentication → Sign-in methods.";
+      } else if (error.code === 'auth/popup-blocked') {
+        errorTitle = "Popup Blocked";
+        errorMessage = "Please allow popups for this site and try again.";
+      } else if (error.code === 'auth/cancelled-popup-request') {
+        errorTitle = "Login Cancelled";
+        errorMessage = "Another login attempt is in progress.";
       }
 
       toast({
