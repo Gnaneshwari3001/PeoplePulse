@@ -69,6 +69,16 @@ export function Login() {
   }
 
   async function handleGoogleLogin() {
+    // This function should only be called on authorized domains
+    if (!isAuthorizedDomain()) {
+      toast({
+        title: "Google Login Unavailable",
+        description: "Please add this domain to Firebase authorized domains or use email/password login.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     try {
       setLoading(true);
       await loginWithGoogle();
@@ -79,17 +89,9 @@ export function Login() {
     } catch (error: any) {
       console.error("Google login error:", error);
 
-      let errorMessage = error.message || "An error occurred during Google login.";
-      let errorTitle = "Google Login Error";
-
-      if (error.code === 'auth/unauthorized-domain') {
-        errorTitle = "Domain Not Authorized";
-        errorMessage = "This domain needs to be added to Firebase Console. Using email/password login instead.";
-      }
-
       toast({
-        title: errorTitle,
-        description: errorMessage,
+        title: "Google Login Error",
+        description: error.message || "An error occurred during Google login.",
         variant: "destructive"
       });
     } finally {
