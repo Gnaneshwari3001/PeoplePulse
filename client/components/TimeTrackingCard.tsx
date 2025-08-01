@@ -276,7 +276,7 @@ export function TimeTrackingCard() {
             <Button
               onClick={handlePulseIn}
               className="flex-1 h-14 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-              disabled={isButtonsDisabled}
+              disabled={isButtonsDisabled || loading}
             >
               <PlayCircle className="w-6 h-6 mr-2" />
               Pulse In
