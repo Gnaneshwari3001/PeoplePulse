@@ -105,26 +105,55 @@ export function TimeTrackingCard() {
     loadWorkData();
   }, [currentUser]);
 
-  const handlePulseIn = () => {
-    const now = new Date().toISOString();
-    const today = new Date().toDateString();
-    
-    setWorkData(prev => ({
-      ...prev,
-      status: "on-duty",
-      clockInTime: now,
-      clockOutTime: null,
-      lastClockIn: now,
-    }));
+  const handlePulseIn = async () => {
+    if (!currentUser || loading) return;
 
-    // Store in localStorage
-    localStorage.setItem(`clockIn_${today}`, now);
-    localStorage.setItem("lastClockIn", now);
+    setLoading(true);
+    try {
+      const now = new Date().toISOString();
+      const today = new Date().toISOString().split('T')[0];
 
-    toast({
-      title: "✅ Pulsed In Successfully!",
-      description: `You've clocked in at ${new Date(now).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`,
-    });
+      // Update attendance record in Firebase
+      const attendanceRef = ref(database, `attendance/${currentUser.uid}/${today}`);
+      await set(attendanceRef, {
+        clockInTime: now,
+        clockOutTime: null,
+        date: today,
+        userId: currentUser.uid,
+        userEmail: currentUser.email,
+        userName: currentUser.displayName || currentUser.email,
+      });
+
+      // Log the clock-in event
+      const clockInLogRef = ref(database, `attendance_logs/${currentUser.uid}`);
+      await push(clockInLogRef, {
+        type: "clock_in",
+        timestamp: now,
+        date: today,
+      });
+
+      setWorkData(prev => ({
+        ...prev,
+        status: "on-duty",
+        clockInTime: now,
+        clockOutTime: null,
+        lastClockIn: now,
+      }));
+
+      toast({
+        title: "✅ Pulsed In Successfully!",
+        description: `You've clocked in at ${new Date(now).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`,
+      });
+    } catch (error) {
+      console.error("Error clocking in:", error);
+      toast({
+        title: "Error",
+        description: "Failed to clock in. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handlePulseOut = () => {
