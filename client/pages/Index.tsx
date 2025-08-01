@@ -220,6 +220,39 @@ export default function Index() {
               );
             })}
           </div>
+
+          {/* Holidays Section */}
+          <div className="mt-8">
+            <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold text-purple-900 flex items-center space-x-2">
+                  <CalendarIcon className="w-5 h-5" />
+                  <span>Upcoming Holidays</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                  {holidays.slice(0, 4).map((holiday, index) => (
+                    <div key={index} className="bg-white rounded-lg p-3 shadow-sm border border-purple-100">
+                      <p className="font-medium text-gray-900 text-sm">{holiday.name}</p>
+                      <p className="text-xs text-gray-600 mt-1">{holiday.date}</p>
+                      <Badge variant="secondary" className="text-xs mt-2 bg-purple-100 text-purple-700">
+                        {holiday.type}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 text-center">
+                  <Link to="/calendar">
+                    <Button variant="outline" size="sm" className="text-purple-700 border-purple-300 hover:bg-purple-50">
+                      View All Holidays
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
 
