@@ -23,6 +23,14 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { TimeTrackingCard } from "@/components/TimeTrackingCard";
 import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const modules = [
   {
