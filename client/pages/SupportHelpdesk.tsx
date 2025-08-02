@@ -167,6 +167,39 @@ const faqs = [
   }
 ];
 
+const quickTemplates = [
+  {
+    title: "Password Reset Request",
+    description: "I need to reset my password for [specify which system/account]. I am unable to access [provide details about the issue].",
+    category: "IT" as Ticket["category"],
+    priority: "medium" as Ticket["priority"]
+  },
+  {
+    title: "Leave Request Question",
+    description: "I have a question about my leave balance/policy. [Please specify your question about vacation, sick leave, etc.]",
+    category: "HR" as Ticket["category"],
+    priority: "low" as Ticket["priority"]
+  },
+  {
+    title: "Equipment/Hardware Issue",
+    description: "I am experiencing an issue with my [laptop/desktop/phone/other equipment]. The problem is: [describe the issue in detail].",
+    category: "IT" as Ticket["category"],
+    priority: "high" as Ticket["priority"]
+  },
+  {
+    title: "Expense Reimbursement Query",
+    description: "I have a question about my expense reimbursement for [specify expense type]. [Provide details about your query].",
+    category: "Finance" as Ticket["category"],
+    priority: "medium" as Ticket["priority"]
+  },
+  {
+    title: "Office Access/Security Issue",
+    description: "I am having trouble with [access card/building entry/office security]. [Describe the specific issue you're experiencing].",
+    category: "Admin" as Ticket["category"],
+    priority: "medium" as Ticket["priority"]
+  }
+];
+
 export default function SupportHelpdesk() {
   const [tickets, setTickets] = useState<Ticket[]>(initialTickets);
   const [searchTerm, setSearchTerm] = useState("");
