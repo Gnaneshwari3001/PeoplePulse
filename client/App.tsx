@@ -37,7 +37,7 @@ function AuthenticatedApp() {
           <Route path="/attendance" element={<PlaceholderPage module="Time & Attendance" description="Clock in/out, track time, and manage leave requests" />} />
           <Route path="/policies" element={<PlaceholderPage module="Policy Vault" description="Company policies, procedures, and documentation" />} />
           <Route path="/documents" element={<PlaceholderPage module="Document Box" description="Personal documents, contracts, and e-signatures" />} />
-          <Route path="/hiring" element={<PlaceholderPage module="Hiring Hub" description="Job postings, referrals, and recruitment management" />} />
+          <Route path="/hiring" element={<HiringHub />} />
           <Route path="/calendar" element={<PlaceholderPage module="Smart Calendar" description="Events, meetings, holidays, and scheduling" />} />
           <Route path="/growth" element={<PlaceholderPage module="Growth & Feedback" description="Performance reviews, goals, and professional development" />} />
           <Route path="/support" element={<SupportHelpdesk />} />
