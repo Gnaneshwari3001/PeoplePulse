@@ -82,45 +82,12 @@ export function Header() {
             <Search className="h-5 w-5" />
           </Button>
           
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="relative">
-                <Bell className="h-5 w-5" />
-                <Badge className="absolute -top-1 -right-1 h-4 w-4 p-0 bg-red-500 text-white text-xs">
-                  3
-                </Badge>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-80">
-              <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="p-4">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium">Payslip Ready</p>
-                  <p className="text-xs text-gray-600">Your November payslip is now available for download</p>
-                  <p className="text-xs text-gray-500">2 hours ago</p>
-                </div>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="p-4">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium">Leave Request Approved</p>
-                  <p className="text-xs text-gray-600">Your leave request for Dec 20-22 has been approved</p>
-                  <p className="text-xs text-gray-500">1 day ago</p>
-                </div>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="p-4">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium">Task Assignment</p>
-                  <p className="text-xs text-gray-600">New task assigned: Q4 Performance Review</p>
-                  <p className="text-xs text-gray-500">2 days ago</p>
-                </div>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-center text-blue-600 hover:text-blue-800">
-                View All Notifications
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <NotificationSystem
+            notifications={notifications}
+            onMarkAsRead={handleMarkAsRead}
+            onMarkAllAsRead={handleMarkAllAsRead}
+            onDismiss={handleDismissNotification}
+          />
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
