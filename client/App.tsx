@@ -8,6 +8,7 @@ import NotFound from "@/pages/NotFound";
 import PlaceholderPage from "@/pages/PlaceholderPage";
 import TaskCenter from "@/pages/TaskCenter";
 import TeamDirectory from "@/pages/TeamDirectory";
+import ClaimsManager from "@/pages/ClaimsManager";
 
 function AuthenticatedApp() {
   const { currentUser } = useAuth();
