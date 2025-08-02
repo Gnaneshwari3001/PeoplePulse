@@ -37,7 +37,7 @@ function AuthenticatedApp() {
           <Route path="/hiring" element={<PlaceholderPage module="Hiring Hub" description="Job postings, referrals, and recruitment management" />} />
           <Route path="/calendar" element={<PlaceholderPage module="Smart Calendar" description="Events, meetings, holidays, and scheduling" />} />
           <Route path="/growth" element={<PlaceholderPage module="Growth & Feedback" description="Performance reviews, goals, and professional development" />} />
-          <Route path="/support" element={<PlaceholderPage module="Support & Helpdesk" description="IT support, HR assistance, and help tickets" />} />
+          <Route path="/support" element={<SupportHelpdesk />} />
 
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
