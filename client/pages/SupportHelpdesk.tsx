@@ -239,10 +239,38 @@ export default function SupportHelpdesk() {
   };
 
   const handleSubmitTicket = () => {
-    if (!newTicket.title || !newTicket.description) {
+    // Enhanced validation
+    if (!newTicket.title.trim()) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
+        title: "Title Required",
+        description: "Please provide a clear subject for your query.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!newTicket.description.trim()) {
+      toast({
+        title: "Description Required",
+        description: "Please provide detailed information about your issue or question.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (newTicket.title.length < 10) {
+      toast({
+        title: "Title Too Short",
+        description: "Please provide a more descriptive subject (at least 10 characters).",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (newTicket.description.length < 20) {
+      toast({
+        title: "Description Too Short",
+        description: "Please provide more details about your query (at least 20 characters).",
         variant: "destructive"
       });
       return;
@@ -250,14 +278,27 @@ export default function SupportHelpdesk() {
 
     const ticket: Ticket = {
       id: (tickets.length + 1).toString(),
-      title: newTicket.title,
-      description: newTicket.description,
+      title: newTicket.title.trim(),
+      description: newTicket.description.trim(),
       category: newTicket.category,
       priority: newTicket.priority,
       status: "open",
       createdDate: new Date().toISOString().split('T')[0],
       updatedDate: new Date().toISOString().split('T')[0],
-      responses: []
+      responses: [
+        {
+          id: "auto-1",
+          message: `Thank you for submitting your ${newTicket.category} query. Our support team has been notified and will respond according to the ${newTicket.priority} priority level. Expected response time: ${
+            newTicket.priority === "urgent" ? "within 2 hours" :
+            newTicket.priority === "high" ? "within 4 hours" :
+            newTicket.priority === "medium" ? "within 1 business day" :
+            "within 2-3 business days"
+          }.`,
+          timestamp: new Date().toISOString(),
+          author: "PeoplePulse Support System",
+          isStaff: true
+        }
+      ]
     };
 
     setTickets([ticket, ...tickets]);
@@ -265,8 +306,8 @@ export default function SupportHelpdesk() {
     setIsNewTicketOpen(false);
 
     toast({
-      title: "Ticket Created Successfully!",
-      description: `Your ticket #${ticket.id} has been submitted and assigned to our support team.`
+      title: "✅ Query Submitted Successfully!",
+      description: `Your ticket #${ticket.id} has been created. Check your ticket status in the Open tab.`
     });
   };
 
