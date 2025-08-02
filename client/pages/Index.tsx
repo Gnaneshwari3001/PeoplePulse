@@ -393,22 +393,30 @@ export default function Index() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-20 flex-col space-y-2 hover:bg-blue-50">
-                <Clock className="w-5 h-5" />
-                <span className="text-xs">Clock In</span>
-              </Button>
-              <Button variant="outline" className="h-20 flex-col space-y-2 hover:bg-green-50">
-                <Plus className="w-5 h-5" />
-                <span className="text-xs">New Task</span>
-              </Button>
-              <Button variant="outline" className="h-20 flex-col space-y-2 hover:bg-purple-50">
-                <Receipt className="w-5 h-5" />
-                <span className="text-xs">Submit Claim</span>
-              </Button>
-              <Button variant="outline" className="h-20 flex-col space-y-2 hover:bg-orange-50">
-                <Calendar className="w-5 h-5" />
-                <span className="text-xs">Request Leave</span>
-              </Button>
+              <Link to="/attendance">
+                <Button variant="outline" className="w-full h-20 flex-col space-y-2 hover:bg-blue-50 hover:border-blue-300 transition-colors">
+                  <Clock className="w-5 h-5" />
+                  <span className="text-xs">Clock In</span>
+                </Button>
+              </Link>
+              <Link to="/tasks">
+                <Button variant="outline" className="w-full h-20 flex-col space-y-2 hover:bg-green-50 hover:border-green-300 transition-colors">
+                  <Plus className="w-5 h-5" />
+                  <span className="text-xs">New Task</span>
+                </Button>
+              </Link>
+              <Link to="/claims">
+                <Button variant="outline" className="w-full h-20 flex-col space-y-2 hover:bg-purple-50 hover:border-purple-300 transition-colors">
+                  <Receipt className="w-5 h-5" />
+                  <span className="text-xs">Submit Claim</span>
+                </Button>
+              </Link>
+              <Link to="/attendance">
+                <Button variant="outline" className="w-full h-20 flex-col space-y-2 hover:bg-orange-50 hover:border-orange-300 transition-colors">
+                  <Calendar className="w-5 h-5" />
+                  <span className="text-xs">Request Leave</span>
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>
