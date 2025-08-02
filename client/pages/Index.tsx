@@ -333,10 +333,11 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-      <Sidebar />
-      
+      <Sidebar isMobileOpen={isMobileOpen} setIsMobileOpen={setIsMobileOpen} />
+      <MobileSidebarTrigger onClick={() => setIsMobileOpen(true)} />
+
       {/* Main Content */}
-      <div className="ml-72 transition-all duration-300">
+      <div className="lg:ml-72 transition-all duration-300">
         {/* Welcome Section */}
         <div className="bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-lg">
           <div className="px-8 py-8">
