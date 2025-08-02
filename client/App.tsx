@@ -10,6 +10,8 @@ import TaskCenter from "@/pages/TaskCenter";
 import TeamDirectory from "@/pages/TeamDirectory";
 import ClaimsManager from "@/pages/ClaimsManager";
 import SupportHelpdesk from "@/pages/SupportHelpdesk";
+import Connect from "@/pages/Connect";
+import SalaryCenter from "@/pages/SalaryCenter";
 
 function AuthenticatedApp() {
   const { currentUser } = useAuth();
