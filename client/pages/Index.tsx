@@ -316,6 +316,66 @@ export default function Index() {
           </Link>
         </div>
       )
+    },
+    {
+      id: 'workflow',
+      title: 'Approval Workflow',
+      icon: GitBranch,
+      color: 'from-blue-500 to-indigo-600',
+      urgent: true,
+      content: (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold">Recent Requests</h3>
+            <Badge className="bg-red-100 text-red-700">3 pending</Badge>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              { id: "REQ-001", title: "Vacation Leave Request", status: "pending", priority: "medium", submitter: "John Doe", type: "leave" },
+              { id: "REQ-002", title: "New Laptop Request", status: "in-progress", priority: "high", submitter: "Alex Kumar", type: "it-support" },
+              { id: "REQ-003", title: "Benefits Enrollment", status: "escalated", priority: "medium", submitter: "Maria Rodriguez", type: "hr-query" }
+            ].map((request, index) => (
+              <Card key={index} className={cn(
+                "bg-white/60 backdrop-blur-sm border-white/20 hover:shadow-lg transition-all duration-300 cursor-pointer",
+                request.status === "pending" && "border-yellow-200/70 bg-yellow-50/30",
+                request.status === "escalated" && "border-red-200/70 bg-red-50/30"
+              )}>
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3">
+                    {request.status === "escalated" && <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>}
+                    {request.status === "pending" && <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>}
+                    {request.status === "in-progress" && <div className="w-2 h-2 bg-blue-500 rounded-full"></div>}
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-medium">{request.title}</h4>
+                        <Badge className={
+                          request.priority === "high" ? "bg-red-100 text-red-700" :
+                          request.priority === "medium" ? "bg-yellow-100 text-yellow-700" :
+                          "bg-gray-100 text-gray-700"
+                        }>
+                          {request.priority}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center justify-between mt-1">
+                        <p className="text-sm text-gray-600">By: {request.submitter}</p>
+                        <span className="text-xs text-gray-500">{request.id}</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Link to="/workflow">
+            <Button variant="outline" className="w-full bg-white/50 backdrop-blur-sm hover:bg-white/70">
+              View All Requests
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
+        </div>
+      )
     }
   ];
 
