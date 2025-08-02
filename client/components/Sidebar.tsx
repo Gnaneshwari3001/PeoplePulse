@@ -36,6 +36,7 @@ const menuItems = [
   { icon: UserPlus, label: "Hiring Hub", path: "/hiring", color: "from-pink-500 to-pink-600", badge: "5" },
   { icon: Calendar, label: "Smart Calendar", path: "/calendar", color: "from-cyan-500 to-cyan-600", badge: "3" },
   { icon: TrendingUp, label: "Growth & Feedback", path: "/growth", color: "from-violet-500 to-violet-600", badge: "Due" },
+  { icon: GitBranch, label: "Approval Workflow", path: "/workflow", color: "from-blue-500 to-indigo-600", badge: "3", urgent: true },
   { icon: Headphones, label: "Support & Helpdesk", path: "/support", color: "from-slate-500 to-slate-600", badge: "1" },
 ];
 
