@@ -31,6 +31,7 @@ import { cn } from "@/lib/utils";
 export default function Index() {
   const { currentUser } = useAuth();
   const [activePanel, setActivePanel] = useState(0);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const getUserName = () => {
