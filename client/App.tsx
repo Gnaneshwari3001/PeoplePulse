@@ -40,7 +40,7 @@ function AuthenticatedApp() {
           <Route path="/documents" element={<PlaceholderPage module="Document Box" description="Personal documents, contracts, and e-signatures" />} />
           <Route path="/hiring" element={<HiringHub />} />
           <Route path="/calendar" element={<PlaceholderPage module="Smart Calendar" description="Events, meetings, holidays, and scheduling" />} />
-          <Route path="/growth" element={<PlaceholderPage module="Growth & Feedback" description="Performance reviews, goals, and professional development" />} />
+          <Route path="/growth" element={<GrowthFeedback />} />
           <Route path="/support" element={<SupportHelpdesk />} />
 
           {/* Catch-all route */}
