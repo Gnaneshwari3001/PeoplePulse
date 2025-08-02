@@ -28,7 +28,7 @@ function AuthenticatedApp() {
           <Route path="/tasks" element={<TaskCenter />} />
           <Route path="/team" element={<TeamDirectory />} />
           <Route path="/connect" element={<PlaceholderPage module="Connect" description="Internal messaging, team channels, and announcements" />} />
-          <Route path="/claims" element={<PlaceholderPage module="Claim Manager" description="Submit and track expense reimbursements" />} />
+          <Route path="/claims" element={<ClaimsManager />} />
           <Route path="/salary" element={<PlaceholderPage module="Salary Center" description="Access payslips, tax information, and compensation details" />} />
           <Route path="/attendance" element={<PlaceholderPage module="Time & Attendance" description="Clock in/out, track time, and manage leave requests" />} />
           <Route path="/policies" element={<PlaceholderPage module="Policy Vault" description="Company policies, procedures, and documentation" />} />
