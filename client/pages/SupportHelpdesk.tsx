@@ -521,6 +521,29 @@ export default function SupportHelpdesk() {
           </Card>
         </div>
 
+        {/* Employee Query Guidance */}
+        <Card className="mb-6 bg-gradient-to-r from-green-50 to-blue-50 border-green-200">
+          <CardContent className="p-4">
+            <div className="flex items-start space-x-3">
+              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <MessageSquare className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-green-900 mb-2">How to Raise a Query</h3>
+                <p className="text-green-800 text-sm mb-2">
+                  Need help? Click "Raise Query" above to submit your question or issue. Our support team is here to assist you!
+                </p>
+                <div className="text-xs text-green-700 space-y-1">
+                  <p>✅ <strong>Be specific:</strong> Include details, error messages, or screenshots</p>
+                  <p>✅ <strong>Choose priority:</strong> Urgent issues get faster response times</p>
+                  <p>✅ <strong>Select category:</strong> Helps route to the right team (IT, HR, Admin, Finance)</p>
+                  <p>✅ <strong>Use templates:</strong> Quick templates available for common issues</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Search and Filters */}
         <Card className="mb-6">
           <CardContent className="p-4">
