@@ -493,6 +493,7 @@ export default function Index() {
             {[
               { icon: CheckSquare, label: "Tasks", path: "/tasks", urgent: true },
               { icon: MessageSquare, label: "Messages", path: "/connect", urgent: true },
+              { icon: GitBranch, label: "Workflow", path: "/workflow", urgent: true },
               { icon: Calendar, label: "Calendar", path: "/calendar" },
               { icon: Users, label: "Team", path: "/team" }
             ].map((action, index) => (
