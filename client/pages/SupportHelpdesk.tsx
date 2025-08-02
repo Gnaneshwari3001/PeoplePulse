@@ -371,10 +371,35 @@ export default function SupportHelpdesk() {
                 <DialogHeader>
                   <DialogTitle>Create New Support Ticket</DialogTitle>
                   <DialogDescription>
-                    Describe your issue and we'll get back to you as soon as possible.
+                    Describe your issue and we'll get back to you as soon as possible. You can use a template or create a custom query.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
+                  <div className="grid gap-2">
+                    <Label>Quick Templates (Optional)</Label>
+                    <Select value="" onValueChange={(value) => {
+                      const template = quickTemplates.find(t => t.title === value);
+                      if (template) {
+                        setNewTicket({
+                          title: template.title,
+                          description: template.description,
+                          category: template.category,
+                          priority: template.priority
+                        });
+                      }
+                    }}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choose a template or create custom" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {quickTemplates.map((template, index) => (
+                          <SelectItem key={index} value={template.title}>
+                            {template.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                   <div className="grid gap-2">
                     <Label htmlFor="title">Subject *</Label>
                     <Input
