@@ -23,9 +23,9 @@ function AuthenticatedApp() {
         <Routes>
           <Route path="/" element={<Index />} />
 
-          {/* Module Routes - Placeholder pages for now */}
-          <Route path="/tasks" element={<PlaceholderPage module="Task Center" description="Manage your tasks, deadlines, and project status" />} />
-          <Route path="/team" element={<PlaceholderPage module="Team Directory" description="Browse team members, contact information, and organizational structure" />} />
+          {/* Module Routes - Functional pages */}
+          <Route path="/tasks" element={<TaskCenter />} />
+          <Route path="/team" element={<TeamDirectory />} />
           <Route path="/connect" element={<PlaceholderPage module="Connect" description="Internal messaging, team channels, and announcements" />} />
           <Route path="/claims" element={<PlaceholderPage module="Claim Manager" description="Submit and track expense reimbursements" />} />
           <Route path="/salary" element={<PlaceholderPage module="Salary Center" description="Access payslips, tax information, and compensation details" />} />
