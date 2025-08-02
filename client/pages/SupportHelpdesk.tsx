@@ -364,7 +364,7 @@ export default function SupportHelpdesk() {
               <DialogTrigger asChild>
                 <Button className="bg-gradient-to-r from-brand-teal to-brand-blue hover:opacity-90">
                   <Plus className="w-4 h-4 mr-2" />
-                  New Ticket
+                  Raise Query
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[525px]">
