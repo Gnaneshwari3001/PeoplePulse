@@ -401,13 +401,17 @@ export default function SupportHelpdesk() {
                     </Select>
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="title">Subject *</Label>
+                    <Label htmlFor="title">Subject * <span className="text-xs text-gray-500">({newTicket.title.length}/100)</span></Label>
                     <Input
                       id="title"
-                      placeholder="Brief description of your issue"
+                      placeholder="Brief, clear description of your issue or question"
                       value={newTicket.title}
                       onChange={(e) => setNewTicket({...newTicket, title: e.target.value})}
+                      maxLength={100}
                     />
+                    {newTicket.title.length > 0 && newTicket.title.length < 10 && (
+                      <p className="text-xs text-amber-600">Please provide a more descriptive subject (at least 10 characters)</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="category">Category</Label>
