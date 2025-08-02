@@ -9,6 +9,7 @@ import PlaceholderPage from "@/pages/PlaceholderPage";
 import TaskCenter from "@/pages/TaskCenter";
 import TeamDirectory from "@/pages/TeamDirectory";
 import ClaimsManager from "@/pages/ClaimsManager";
+import SupportHelpdesk from "@/pages/SupportHelpdesk";
 
 function AuthenticatedApp() {
   const { currentUser } = useAuth();
