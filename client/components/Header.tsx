@@ -28,6 +28,20 @@ export function Header() {
     }
   };
 
+  const handleMarkAsRead = (id: string) => {
+    setNotifications(prev => prev.map(notif =>
+      notif.id === id ? { ...notif, isRead: true } : notif
+    ));
+  };
+
+  const handleMarkAllAsRead = () => {
+    setNotifications(prev => prev.map(notif => ({ ...notif, isRead: true })));
+  };
+
+  const handleDismissNotification = (id: string) => {
+    setNotifications(prev => prev.filter(notif => notif.id !== id));
+  };
+
   return (
     <header className="bg-white/70 backdrop-blur-xl border-b border-white/20 sticky top-0 z-50 shadow-lg">
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
