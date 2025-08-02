@@ -443,14 +443,21 @@ export default function SupportHelpdesk() {
                     </Select>
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="description">Description *</Label>
+                    <Label htmlFor="description">Description * <span className="text-xs text-gray-500">({newTicket.description.length}/500)</span></Label>
                     <Textarea
                       id="description"
-                      placeholder="Please provide detailed information about your issue..."
-                      className="min-h-[100px]"
+                      placeholder="Please provide detailed information about your issue, question, or request. Include any error messages, steps you've tried, or specific assistance needed."
+                      className="min-h-[120px]"
                       value={newTicket.description}
                       onChange={(e) => setNewTicket({...newTicket, description: e.target.value})}
+                      maxLength={500}
                     />
+                    {newTicket.description.length > 0 && newTicket.description.length < 20 && (
+                      <p className="text-xs text-amber-600">Please provide more details (at least 20 characters)</p>
+                    )}
+                    <p className="text-xs text-gray-500">
+                      💡 Tip: The more details you provide, the faster we can help you!
+                    </p>
                   </div>
                 </div>
                 <DialogFooter>
