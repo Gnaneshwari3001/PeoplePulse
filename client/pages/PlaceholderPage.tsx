@@ -146,28 +146,12 @@ export default function PlaceholderPage({ module, description }: PlaceholderPage
               </div>
             )}
 
-            {/* Coming Soon Section */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-8 text-center">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Full Features Coming Soon!
-              </h3>
-              <p className="text-gray-600 mb-4">
-                This module is currently under development. We're working hard to bring you an amazing experience.
-              </p>
-              <p className="text-sm text-gray-500">
-                Want this feature implemented? Continue prompting to add specific functionality to this page.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="text-center">
               <Link to="/">
                 <Button className="bg-gradient-to-r from-brand-teal to-brand-blue hover:opacity-90">
                   Return to Dashboard
                 </Button>
               </Link>
-              <Button variant="outline">
-                Request Features
-              </Button>
             </div>
           </CardContent>
         </Card>
