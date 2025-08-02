@@ -17,6 +17,7 @@ import { NotificationSystem, sampleNotifications } from "@/components/Notificati
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [notifications, setNotifications] = useState(sampleNotifications);
   const { currentUser, logout } = useAuth();
 
   const handleLogout = async () => {
