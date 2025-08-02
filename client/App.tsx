@@ -43,6 +43,7 @@ function AuthenticatedApp() {
           <Route path="/calendar" element={<PlaceholderPage module="Smart Calendar" description="Events, meetings, holidays, and scheduling" />} />
           <Route path="/growth" element={<GrowthFeedback />} />
           <Route path="/support" element={<SupportHelpdesk />} />
+          <Route path="/workflow" element={<ApprovalWorkflow />} />
 
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
