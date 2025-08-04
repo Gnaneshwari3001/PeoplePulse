@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NotificationSystem, sampleNotifications } from "@/components/NotificationSystem";
+import { VerificationBanner } from "@/components/auth/VerificationBanner";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
