@@ -17,12 +17,16 @@ import { UserProfile, UserRole, Department, hasPermission, canAccessModule } fro
 
 interface AuthContextType {
   currentUser: User | null;
+  userProfile: UserProfile | null;
   login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string, displayName: string) => Promise<void>;
+  signup: (email: string, password: string, displayName: string, role?: UserRole, department?: Department) => Promise<void>;
   logout: () => Promise<void>;
   loginWithGoogle: () => Promise<void>;
   sendEmailVerification: () => Promise<void>;
   reloadUser: () => Promise<void>;
+  updateUserProfile: (updates: Partial<UserProfile>) => Promise<void>;
+  hasPermission: (module: string, action: string) => boolean;
+  canAccessModule: (module: string) => boolean;
   loading: boolean;
 }
 
