@@ -98,6 +98,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await signOut(auth);
   }
 
+  async function sendVerificationEmail() {
+    if (currentUser) {
+      await sendEmailVerification(currentUser, {
+        url: window.location.origin + '/dashboard',
+        handleCodeInApp: true
+      });
+    }
+  }
+
+  async function reloadUser() {
+    if (currentUser) {
+      await reload(currentUser);
+      // Update database record if email is now verified
+      if (currentUser.emailVerified) {
+        await set(ref(database, `users/${currentUser.uid}/emailVerified`), true);
+        await set(ref(database, `users/${currentUser.uid}/status`), 'active');
+      }
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
