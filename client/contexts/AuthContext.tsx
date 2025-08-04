@@ -133,6 +133,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signup,
     logout,
     loginWithGoogle,
+    sendEmailVerification: sendVerificationEmail,
+    reloadUser,
     loading
   };
 
