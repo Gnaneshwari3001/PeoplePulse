@@ -61,7 +61,7 @@ export function Login() {
         await signup(email, password, displayName);
         toast({
           title: "Account Created!",
-          description: "Welcome to PeoplePulse! Your account has been created successfully."
+          description: "Please check your email and verify your account to continue."
         });
       }
     } catch (error: any) {
