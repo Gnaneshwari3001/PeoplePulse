@@ -17,6 +17,7 @@ import SalaryCenter from "@/pages/SalaryCenter";
 import HiringHub from "@/pages/HiringHub";
 import GrowthFeedback from "@/pages/GrowthFeedback";
 import ApprovalWorkflow from "@/pages/ApprovalWorkflow";
+import PolicyVault from "@/pages/PolicyVault";
 
 function AuthenticatedApp() {
   const { currentUser } = useAuth();
