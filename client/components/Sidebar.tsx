@@ -49,6 +49,25 @@ interface SidebarProps {
 export function Sidebar({ isMobileOpen, setIsMobileOpen }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const location = useLocation();
+  const { userProfile, canAccessModule } = useAuth();
+
+  // Filter menu items based on user role and permissions
+  const getFilteredMenuItems = () => {
+    if (!userProfile) return [];
+
+    return getAllMenuItems().filter(item => {
+      // Check if user has permission for this module
+      if (!canAccessModule(item.permission)) return false;
+
+      // Check role-based access
+      if (item.roles.includes("all")) return true;
+      if (item.roles.includes(userProfile.role)) return true;
+
+      return false;
+    });
+  };
+
+  const menuItems = getFilteredMenuItems();
 
   return (
     <>
