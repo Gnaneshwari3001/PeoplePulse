@@ -186,6 +186,49 @@ export function Login() {
               </div>
             )}
 
+            {!isLogin && (
+              <>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="role">Role</Label>
+                    <Select value={selectedRole} onValueChange={(value: UserRole) => setSelectedRole(value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select role" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="employee">Employee</SelectItem>
+                        <SelectItem value="senior_employee">Senior Employee</SelectItem>
+                        <SelectItem value="team_lead">Team Lead</SelectItem>
+                        <SelectItem value="department_manager">Department Manager</SelectItem>
+                        <SelectItem value="hr_manager">HR Manager</SelectItem>
+                        <SelectItem value="admin">Administrator</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="department">Department</Label>
+                    <Select value={selectedDepartment} onValueChange={(value: Department) => setSelectedDepartment(value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select department" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="engineering">Engineering</SelectItem>
+                        <SelectItem value="hr">Human Resources</SelectItem>
+                        <SelectItem value="marketing">Marketing</SelectItem>
+                        <SelectItem value="sales">Sales</SelectItem>
+                        <SelectItem value="finance">Finance</SelectItem>
+                        <SelectItem value="operations">Operations</SelectItem>
+                        <SelectItem value="it">Information Technology</SelectItem>
+                        <SelectItem value="admin">Administration</SelectItem>
+                        <SelectItem value="legal">Legal</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <div className="relative">
