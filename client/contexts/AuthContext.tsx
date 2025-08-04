@@ -13,6 +13,7 @@ import {
 } from 'firebase/auth';
 import { ref, set, get } from 'firebase/database';
 import { auth, database } from '@/lib/firebase';
+import { UserProfile, UserRole, Department, hasPermission, canAccessModule } from '@/types/roles';
 
 interface AuthContextType {
   currentUser: User | null;
