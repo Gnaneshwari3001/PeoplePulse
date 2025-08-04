@@ -15,6 +15,8 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [selectedRole, setSelectedRole] = useState<UserRole>('employee');
+  const [selectedDepartment, setSelectedDepartment] = useState<Department>('engineering');
   const [loading, setLoading] = useState(false);
 
   const { login, signup, loginWithGoogle } = useAuth();
