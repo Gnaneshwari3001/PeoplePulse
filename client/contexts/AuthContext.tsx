@@ -94,16 +94,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const snapshot = await get(userRef);
 
     if (!snapshot.exists()) {
-      await set(userRef, {
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        createdAt: new Date().toISOString(),
+      const employeeId = `EMP${Date.now().toString().slice(-6)}`;
+      const userProfile: UserProfile = {
+        uid: user.uid,
+        email: user.email || '',
+        displayName: user.displayName || '',
         role: 'employee',
-        department: '',
+        department: 'engineering',
+        permissions: [],
+        employeeId: employeeId,
+        joinDate: new Date().toISOString(),
         status: 'active',
-        loginMethod: 'google'
-      });
+        avatar: user.photoURL || undefined
+      };
+
+      await set(userRef, userProfile);
     }
   }
 
