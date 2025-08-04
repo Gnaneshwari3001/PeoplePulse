@@ -46,17 +46,44 @@ function AuthenticatedApp() {
           <Route path="/connect" element={<Connect />} />
           <Route path="/claims" element={<ClaimsManager />} />
           <Route path="/salary" element={<SalaryCenter />} />
-          <Route path="/attendance" element={<PlaceholderPage module="Time & Attendance" description="Clock in/out, track time, and manage leave requests" />} />
+          <Route
+            path="/attendance"
+            element={
+              <PlaceholderPage
+                module="Time & Attendance"
+                description="Clock in/out, track time, and manage leave requests"
+              />
+            }
+          />
           <Route path="/policies" element={<PolicyVault />} />
-          <Route path="/documents" element={<PlaceholderPage module="Document Box" description="Personal documents, contracts, and e-signatures" />} />
+          <Route
+            path="/documents"
+            element={
+              <PlaceholderPage
+                module="Document Box"
+                description="Personal documents, contracts, and e-signatures"
+              />
+            }
+          />
           <Route path="/hiring" element={<HiringHub />} />
-          <Route path="/calendar" element={<PlaceholderPage module="Smart Calendar" description="Events, meetings, holidays, and scheduling" />} />
+          <Route
+            path="/calendar"
+            element={
+              <PlaceholderPage
+                module="Smart Calendar"
+                description="Events, meetings, holidays, and scheduling"
+              />
+            }
+          />
           <Route path="/growth" element={<GrowthFeedback />} />
           <Route path="/support" element={<SupportHelpdesk />} />
           <Route path="/workflow" element={<ApprovalWorkflow />} />
           <Route path="/employees" element={<EmployeeManagement />} />
           <Route path="/admin/analytics" element={<Analytics />} />
-          <Route path="/verification-success" element={<VerificationSuccess />} />
+          <Route
+            path="/verification-success"
+            element={<VerificationSuccess />}
+          />
 
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />

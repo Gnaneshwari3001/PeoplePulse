@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { 
-  BarChart3, 
-  Users, 
-  TrendingUp, 
-  Clock, 
-  FileText, 
+import {
+  BarChart3,
+  Users,
+  TrendingUp,
+  Clock,
+  FileText,
   Activity,
   Download,
   Calendar,
   Filter,
-  RefreshCw
+  RefreshCw,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export default function Analytics() {
       change: "+12%",
       trend: "up",
       icon: Users,
-      color: "from-blue-500 to-blue-600"
+      color: "from-blue-500 to-blue-600",
     },
     {
       id: "active-users",
@@ -64,7 +64,7 @@ export default function Analytics() {
       change: "+8%",
       trend: "up",
       icon: Activity,
-      color: "from-green-500 to-green-600"
+      color: "from-green-500 to-green-600",
     },
     {
       id: "avg-productivity",
@@ -73,7 +73,7 @@ export default function Analytics() {
       change: "+3%",
       trend: "up",
       icon: TrendingUp,
-      color: "from-purple-500 to-purple-600"
+      color: "from-purple-500 to-purple-600",
     },
     {
       id: "total-hours",
@@ -82,7 +82,7 @@ export default function Analytics() {
       change: "+15%",
       trend: "up",
       icon: Clock,
-      color: "from-orange-500 to-orange-600"
+      color: "from-orange-500 to-orange-600",
     },
     {
       id: "policies-created",
@@ -91,7 +91,7 @@ export default function Analytics() {
       change: "+6",
       trend: "up",
       icon: FileText,
-      color: "from-indigo-500 to-indigo-600"
+      color: "from-indigo-500 to-indigo-600",
     },
     {
       id: "avg-response-time",
@@ -100,8 +100,8 @@ export default function Analytics() {
       change: "-12%",
       trend: "up",
       icon: Clock,
-      color: "from-teal-500 to-teal-600"
-    }
+      color: "from-teal-500 to-teal-600",
+    },
   ];
 
   const departmentData: ChartData[] = [
@@ -110,13 +110,13 @@ export default function Analytics() {
     { name: "Sales", value: 32, color: "#F59E0B" },
     { name: "HR", value: 12, color: "#EF4444" },
     { name: "Finance", value: 18, color: "#8B5CF6" },
-    { name: "Operations", value: 26, color: "#06B6D4" }
+    { name: "Operations", value: 26, color: "#06B6D4" },
   ];
 
   const taskCompletionData: ChartData[] = [
     { name: "Completed", value: 78, color: "#10B981" },
     { name: "In Progress", value: 15, color: "#F59E0B" },
-    { name: "Overdue", value: 7, color: "#EF4444" }
+    { name: "Overdue", value: 7, color: "#EF4444" },
   ];
 
   const handleRefresh = () => {
@@ -126,34 +126,48 @@ export default function Analytics() {
 
   const handleExport = () => {
     // Simulate export functionality
-    const csvContent = "data:text/csv;charset=utf-8," + 
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
       "Metric,Value,Change\n" +
-      metrics.map(m => `${m.title},${m.value},${m.change}`).join("\n");
-    
+      metrics.map((m) => `${m.title},${m.value},${m.change}`).join("\n");
+
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `analytics-report-${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute(
+      "download",
+      `analytics-report-${new Date().toISOString().split("T")[0]}.csv`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   return (
-    <AdminOnly fallback={
-      <div className="p-8 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h1>
-        <p className="text-gray-600">You need admin privileges to access analytics.</p>
-      </div>
-    }>
+    <AdminOnly
+      fallback={
+        <div className="p-8 text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            Access Denied
+          </h1>
+          <p className="text-gray-600">
+            You need admin privileges to access analytics.
+          </p>
+        </div>
+      }
+    >
       <div className="space-y-8 p-8">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Analytics & Reports</h1>
-            <p className="text-gray-600">System performance metrics and insights</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Analytics & Reports
+            </h1>
+            <p className="text-gray-600">
+              System performance metrics and insights
+            </p>
           </div>
-          
+
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4 text-gray-500" />
@@ -170,17 +184,19 @@ export default function Analytics() {
                 </SelectContent>
               </Select>
             </div>
-            
-            <Button 
+
+            <Button
               onClick={handleRefresh}
               variant="outline"
               disabled={isLoading}
               className="gap-2"
             >
-              <RefreshCw className={cn("w-4 h-4", isLoading && "animate-spin")} />
+              <RefreshCw
+                className={cn("w-4 h-4", isLoading && "animate-spin")}
+              />
               Refresh
             </Button>
-            
+
             <Button onClick={handleExport} className="gap-2">
               <Download className="w-4 h-4" />
               Export Report
@@ -193,26 +209,37 @@ export default function Analytics() {
           {metrics.map((metric) => {
             const IconComponent = metric.icon;
             return (
-              <Card key={metric.id} className="bg-white/70 backdrop-blur-sm border-white/20 hover:shadow-lg transition-all">
+              <Card
+                key={metric.id}
+                className="bg-white/70 backdrop-blur-sm border-white/20 hover:shadow-lg transition-all"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className={cn(
-                      "w-12 h-12 rounded-xl flex items-center justify-center shadow-lg",
-                      `bg-gradient-to-br ${metric.color}`
-                    )}>
+                    <div
+                      className={cn(
+                        "w-12 h-12 rounded-xl flex items-center justify-center shadow-lg",
+                        `bg-gradient-to-br ${metric.color}`,
+                      )}
+                    >
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
-                    <Badge className={cn(
-                      "text-xs",
-                      metric.trend === "up" ? "bg-green-100 text-green-700" :
-                      metric.trend === "down" ? "bg-red-100 text-red-700" :
-                      "bg-gray-100 text-gray-700"
-                    )}>
+                    <Badge
+                      className={cn(
+                        "text-xs",
+                        metric.trend === "up"
+                          ? "bg-green-100 text-green-700"
+                          : metric.trend === "down"
+                            ? "bg-red-100 text-red-700"
+                            : "bg-gray-100 text-gray-700",
+                      )}
+                    >
                       {metric.change}
                     </Badge>
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-gray-900 mb-1">{metric.value}</p>
+                    <p className="text-2xl font-bold text-gray-900 mb-1">
+                      {metric.value}
+                    </p>
                     <p className="text-sm text-gray-600">{metric.title}</p>
                   </div>
                 </CardContent>
@@ -234,25 +261,32 @@ export default function Analytics() {
             <CardContent>
               <div className="space-y-4">
                 {departmentData.map((dept) => (
-                  <div key={dept.name} className="flex items-center justify-between">
+                  <div
+                    key={dept.name}
+                    className="flex items-center justify-between"
+                  >
                     <div className="flex items-center gap-3">
-                      <div 
+                      <div
                         className="w-4 h-4 rounded"
                         style={{ backgroundColor: dept.color }}
                       />
-                      <span className="font-medium text-gray-700">{dept.name}</span>
+                      <span className="font-medium text-gray-700">
+                        {dept.name}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-24 bg-gray-200 rounded-full h-2">
-                        <div 
+                        <div
                           className="h-2 rounded-full transition-all duration-500"
-                          style={{ 
+                          style={{
                             backgroundColor: dept.color,
-                            width: `${(dept.value / 60) * 100}%`
+                            width: `${(dept.value / 60) * 100}%`,
                           }}
                         />
                       </div>
-                      <span className="text-sm font-medium w-8 text-right">{dept.value}</span>
+                      <span className="text-sm font-medium w-8 text-right">
+                        {dept.value}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -271,25 +305,32 @@ export default function Analytics() {
             <CardContent>
               <div className="space-y-4">
                 {taskCompletionData.map((status) => (
-                  <div key={status.name} className="flex items-center justify-between">
+                  <div
+                    key={status.name}
+                    className="flex items-center justify-between"
+                  >
                     <div className="flex items-center gap-3">
-                      <div 
+                      <div
                         className="w-4 h-4 rounded"
                         style={{ backgroundColor: status.color }}
                       />
-                      <span className="font-medium text-gray-700">{status.name}</span>
+                      <span className="font-medium text-gray-700">
+                        {status.name}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-24 bg-gray-200 rounded-full h-2">
-                        <div 
+                        <div
                           className="h-2 rounded-full transition-all duration-500"
-                          style={{ 
+                          style={{
                             backgroundColor: status.color,
-                            width: `${status.value}%`
+                            width: `${status.value}%`,
                           }}
                         />
                       </div>
-                      <span className="text-sm font-medium w-10 text-right">{status.value}%</span>
+                      <span className="text-sm font-medium w-10 text-right">
+                        {status.value}%
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -309,23 +350,54 @@ export default function Analytics() {
           <CardContent>
             <div className="space-y-4">
               {[
-                { time: "2 minutes ago", action: "New employee John Doe added to Engineering", type: "user" },
-                { time: "15 minutes ago", action: "Policy 'Remote Work Guidelines' updated", type: "policy" },
-                { time: "1 hour ago", action: "Task completion rate increased by 5%", type: "metric" },
-                { time: "2 hours ago", action: "24 employees logged hours today", type: "time" },
-                { time: "3 hours ago", action: "Marketing team meeting scheduled", type: "calendar" }
+                {
+                  time: "2 minutes ago",
+                  action: "New employee John Doe added to Engineering",
+                  type: "user",
+                },
+                {
+                  time: "15 minutes ago",
+                  action: "Policy 'Remote Work Guidelines' updated",
+                  type: "policy",
+                },
+                {
+                  time: "1 hour ago",
+                  action: "Task completion rate increased by 5%",
+                  type: "metric",
+                },
+                {
+                  time: "2 hours ago",
+                  action: "24 employees logged hours today",
+                  type: "time",
+                },
+                {
+                  time: "3 hours ago",
+                  action: "Marketing team meeting scheduled",
+                  type: "calendar",
+                },
               ].map((activity, index) => (
-                <div key={index} className="flex items-center gap-4 p-3 rounded-lg bg-gray-50">
-                  <div className={cn(
-                    "w-2 h-2 rounded-full",
-                    activity.type === "user" ? "bg-blue-500" :
-                    activity.type === "policy" ? "bg-purple-500" :
-                    activity.type === "metric" ? "bg-green-500" :
-                    activity.type === "time" ? "bg-orange-500" :
-                    "bg-gray-500"
-                  )} />
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-3 rounded-lg bg-gray-50"
+                >
+                  <div
+                    className={cn(
+                      "w-2 h-2 rounded-full",
+                      activity.type === "user"
+                        ? "bg-blue-500"
+                        : activity.type === "policy"
+                          ? "bg-purple-500"
+                          : activity.type === "metric"
+                            ? "bg-green-500"
+                            : activity.type === "time"
+                              ? "bg-orange-500"
+                              : "bg-gray-500",
+                    )}
+                  />
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">{activity.action}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {activity.action}
+                    </p>
                     <p className="text-xs text-gray-500">{activity.time}</p>
                   </div>
                 </div>
@@ -336,7 +408,10 @@ export default function Analytics() {
 
         {/* Footer Info */}
         <div className="text-center text-sm text-gray-500 pt-4 border-t border-gray-200">
-          <p>Last updated: {new Date().toLocaleString()} • Data refreshes automatically every 5 minutes</p>
+          <p>
+            Last updated: {new Date().toLocaleString()} • Data refreshes
+            automatically every 5 minutes
+          </p>
         </div>
       </div>
     </AdminOnly>
