@@ -24,21 +24,21 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 
-const menuItems = [
-  { icon: Home, label: "Dashboard", path: "/", color: "from-slate-500 to-slate-600" },
-  { icon: CheckSquare, label: "Task Center", path: "/tasks", color: "from-green-500 to-green-600", badge: "8", urgent: true },
-  { icon: Users, label: "Team Directory", path: "/team", color: "from-blue-500 to-blue-600", badge: "156" },
-  { icon: MessageSquare, label: "Connect", path: "/connect", color: "from-purple-500 to-purple-600", badge: "5", urgent: true },
-  { icon: Receipt, label: "Claim Manager", path: "/claims", color: "from-orange-500 to-orange-600", badge: "2" },
-  { icon: DollarSign, label: "Salary Center", path: "/salary", color: "from-emerald-500 to-emerald-600", badge: "New" },
-  { icon: Clock, label: "Time & Attendance", path: "/attendance", color: "from-red-500 to-red-600", badge: "In" },
-  { icon: FileText, label: "Policy Vault", path: "/policies", color: "from-indigo-500 to-indigo-600", badge: "12" },
-  { icon: FolderOpen, label: "Document Box", path: "/documents", color: "from-teal-500 to-teal-600", badge: "3" },
-  { icon: UserPlus, label: "Hiring Hub", path: "/hiring", color: "from-pink-500 to-pink-600", badge: "5" },
-  { icon: Calendar, label: "Smart Calendar", path: "/calendar", color: "from-cyan-500 to-cyan-600", badge: "3" },
-  { icon: TrendingUp, label: "Growth & Feedback", path: "/growth", color: "from-violet-500 to-violet-600", badge: "Due" },
-  { icon: GitBranch, label: "Approval Workflow", path: "/workflow", color: "from-blue-500 to-indigo-600", badge: "3", urgent: true },
-  { icon: Headphones, label: "Support & Helpdesk", path: "/support", color: "from-slate-500 to-slate-600", badge: "1" },
+const getAllMenuItems = () => [
+  { icon: Home, label: "Dashboard", path: "/", color: "from-slate-500 to-slate-600", permission: "dashboard", roles: ["all"] },
+  { icon: CheckSquare, label: "Task Center", path: "/tasks", color: "from-green-500 to-green-600", badge: "8", urgent: true, permission: "tasks", roles: ["all"] },
+  { icon: Users, label: "Team Directory", path: "/team", color: "from-blue-500 to-blue-600", badge: "156", permission: "team", roles: ["all"] },
+  { icon: MessageSquare, label: "Connect", path: "/connect", color: "from-purple-500 to-purple-600", badge: "5", urgent: true, permission: "connect", roles: ["all"] },
+  { icon: Receipt, label: "Claim Manager", path: "/claims", color: "from-orange-500 to-orange-600", badge: "2", permission: "claims", roles: ["all"] },
+  { icon: DollarSign, label: "Salary Center", path: "/salary", color: "from-emerald-500 to-emerald-600", badge: "New", permission: "salary", roles: ["employee", "hr_manager", "admin"] },
+  { icon: Clock, label: "Time & Attendance", path: "/attendance", color: "from-red-500 to-red-600", badge: "In", permission: "attendance", roles: ["all"] },
+  { icon: FileText, label: "Policy Vault", path: "/policies", color: "from-indigo-500 to-indigo-600", badge: "12", permission: "policies", roles: ["hr_manager", "admin", "department_manager"] },
+  { icon: FolderOpen, label: "Document Box", path: "/documents", color: "from-teal-500 to-teal-600", badge: "3", permission: "documents", roles: ["all"] },
+  { icon: UserPlus, label: "Hiring Hub", path: "/hiring", color: "from-pink-500 to-pink-600", badge: "5", permission: "hiring", roles: ["hr_manager", "admin"] },
+  { icon: Calendar, label: "Smart Calendar", path: "/calendar", color: "from-cyan-500 to-cyan-600", badge: "3", permission: "calendar", roles: ["all"] },
+  { icon: TrendingUp, label: "Growth & Feedback", path: "/growth", color: "from-violet-500 to-violet-600", badge: "Due", permission: "growth_feedback", roles: ["all"] },
+  { icon: GitBranch, label: "Approval Workflow", path: "/workflow", color: "from-blue-500 to-indigo-600", badge: "3", urgent: true, permission: "approval_workflow", roles: ["department_manager", "team_lead", "hr_manager", "admin"] },
+  { icon: Headphones, label: "Support & Helpdesk", path: "/support", color: "from-slate-500 to-slate-600", badge: "1", permission: "support", roles: ["all"] },
 ];
 
 interface SidebarProps {
