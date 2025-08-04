@@ -618,6 +618,17 @@ export default function ApprovalWorkflow() {
                     <XCircle className="w-4 h-4 mr-1" />
                     Reject
                   </Button>
+                  {isOverdue(request.dueDate, request.status) && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleRequestAction(request.id, "escalate")}
+                      className="border-orange-300 text-orange-700 hover:bg-orange-50"
+                    >
+                      <AlertTriangle className="w-4 h-4 mr-1" />
+                      Escalate
+                    </Button>
+                  )}
                 </>
               )}
               <Dialog>
