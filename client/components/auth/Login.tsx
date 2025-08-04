@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Lock, LogIn, UserPlus } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { UserRole, Department, getRoleDisplayName, getDepartmentDisplayName } from '@/types/roles';
 
 export function Login() {
   const [isLogin, setIsLogin] = useState(true);
