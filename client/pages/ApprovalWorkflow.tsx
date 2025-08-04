@@ -376,11 +376,51 @@ export default function ApprovalWorkflow() {
   };
 
   // Handle request actions
-  const handleRequestAction = (requestId: string, action: "approve" | "reject" | "assign") => {
+  const handleRequestAction = (requestId: string, action: "approve" | "reject" | "assign" | "escalate") => {
     setRequests(prev => prev.map(req => {
       if (req.id === requestId) {
         const userName = currentUser?.displayName || currentUser?.email?.split('@')[0] || "Manager";
-        
+
+        if (action === "approve") {
+          return {
+            ...req,
+            status: "approved" as const,
+            approvedBy: userName,
+            approvedAt: new Date().toISOString()
+          };
+        } else if (action === "reject") {
+          return {
+            ...req,
+            status: "rejected" as const,
+            approvedBy: userName,
+            approvedAt: new Date().toISOString()
+          };
+        } else if (action === "escalate") {
+          return {
+            ...req,
+            status: "escalated" as const,
+            escalationLevel: req.escalationLevel + 1,
+            escalationDate: new Date().toISOString()
+          };
+        }
+      }
+      return req;
+    }));
+
+    toast({
+      title: "Request Updated",
+      description: `Request has been ${action}d successfully`,
+    });
+  };
+
+  // Bulk actions
+  const handleBulkAction = (action: "approve" | "reject") => {
+    if (selectedRequests.length === 0) return;
+
+    setRequests(prev => prev.map(req => {
+      if (selectedRequests.includes(req.id)) {
+        const userName = currentUser?.displayName || currentUser?.email?.split('@')[0] || "Manager";
+
         if (action === "approve") {
           return {
             ...req,
@@ -400,9 +440,10 @@ export default function ApprovalWorkflow() {
       return req;
     }));
 
+    setSelectedRequests([]);
     toast({
-      title: "Request Updated",
-      description: `Request has been ${action}d successfully`,
+      title: "Bulk Action Completed",
+      description: `${selectedRequests.length} requests have been ${action}d`,
     });
   };
 
