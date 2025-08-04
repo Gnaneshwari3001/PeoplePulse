@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Login } from "@/components/auth/Login";
+import { EmailVerification } from "@/components/auth/EmailVerification";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/toaster";
 import Index from "@/pages/Index";
