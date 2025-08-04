@@ -55,6 +55,7 @@ function AuthenticatedApp() {
           <Route path="/support" element={<SupportHelpdesk />} />
           <Route path="/workflow" element={<ApprovalWorkflow />} />
           <Route path="/employees" element={<EmployeeManagement />} />
+          <Route path="/admin/analytics" element={<Analytics />} />
           <Route path="/verification-success" element={<VerificationSuccess />} />
 
           {/* Catch-all route */}
