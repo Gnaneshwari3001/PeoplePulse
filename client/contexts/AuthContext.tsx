@@ -181,12 +181,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const value: AuthContextType = {
     currentUser,
+    userProfile,
     login,
     signup,
     logout,
     loginWithGoogle,
     sendEmailVerification: sendVerificationEmail,
     reloadUser,
+    updateUserProfile,
+    hasPermission: checkPermission,
+    canAccessModule: checkModuleAccess,
     loading
   };
 
