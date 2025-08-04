@@ -24,6 +24,11 @@ function AuthenticatedApp() {
     return <Login />;
   }
 
+  // Check if email is verified
+  if (!currentUser.emailVerified) {
+    return <EmailVerification />;
+  }
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-background">
