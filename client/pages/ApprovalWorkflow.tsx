@@ -209,8 +209,28 @@ const sampleRequests: Request[] = [
 ];
 
 export default function ApprovalWorkflow() {
-  const { currentUser } = useAuth();
+  const { currentUser, userProfile, canAccessModule } = useAuth();
   const { toast } = useToast();
+
+  // Check if user has access to approval workflow
+  if (!userProfile || !canAccessModule('approval_workflow')) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 flex items-center justify-center p-8">
+        <div className="text-center">
+          <div className="p-4 rounded-full bg-red-100 mx-auto mb-4 w-16 h-16 flex items-center justify-center">
+            <FileText className="w-8 h-8 text-red-600" />
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Restricted</h1>
+          <p className="text-gray-600 mb-4">
+            You don't have permission to access the Approval Workflow system.
+          </p>
+          <p className="text-sm text-gray-500">
+            This feature is available to managers, HR, and administrators only.
+          </p>
+        </div>
+      </div>
+    );
+  }
   
   const [activeTab, setActiveTab] = useState("submit");
   const [requests, setRequests] = useState<Request[]>(sampleRequests);
