@@ -23,7 +23,8 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       <Sidebar isMobileOpen={isMobileOpen} setIsMobileOpen={setIsMobileOpen} />
       <MobileSidebarTrigger onClick={() => setIsMobileOpen(true)} />
-      
+      <FloatingActions />
+
       {/* Main Content */}
       <div className="lg:ml-72 transition-all duration-300 p-8">
         <RoleBasedDashboard />
