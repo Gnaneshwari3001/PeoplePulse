@@ -38,6 +38,7 @@ const getAllMenuItems = () => [
   { icon: Calendar, label: "Smart Calendar", path: "/calendar", color: "from-cyan-500 to-cyan-600", badge: "3", permission: "calendar", roles: ["all"] },
   { icon: TrendingUp, label: "Growth & Feedback", path: "/growth", color: "from-violet-500 to-violet-600", badge: "Due", permission: "growth_feedback", roles: ["all"] },
   { icon: GitBranch, label: "Approval Workflow", path: "/workflow", color: "from-blue-500 to-indigo-600", badge: "3", urgent: true, permission: "approval_workflow", roles: ["department_manager", "team_lead", "hr_manager", "admin"] },
+  { icon: Users, label: "Employee Management", path: "/employees", color: "from-emerald-500 to-emerald-600", badge: "HR", permission: "employees", roles: ["hr_manager", "admin"] },
   { icon: Headphones, label: "Support & Helpdesk", path: "/support", color: "from-slate-500 to-slate-600", badge: "1", permission: "support", roles: ["all"] },
 ];
 
