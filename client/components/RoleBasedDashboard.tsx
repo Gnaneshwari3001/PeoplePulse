@@ -362,53 +362,12 @@ export function RoleBasedDashboard() {
         })}
       </div>
 
-      {/* Role-specific Quick Access */}
-      {['admin', 'hr_manager'].includes(userProfile.role) && (
-        <Card className="bg-white/60 backdrop-blur-sm border-white/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-orange-500" />
-              Quick Actions
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {userProfile.role === 'hr_manager' && (
-                <>
-                  <Button variant="outline" className="h-16 flex flex-col gap-1">
-                    <UserPlus className="w-5 h-5" />
-                    <span className="text-xs">Add Employee</span>
-                  </Button>
-                  <Button variant="outline" className="h-16 flex flex-col gap-1">
-                    <FileText className="w-5 h-5" />
-                    <span className="text-xs">New Policy</span>
-                  </Button>
-                </>
-              )}
-              {userProfile.role === 'admin' && (
-                <>
-                  <Button variant="outline" className="h-16 flex flex-col gap-1">
-                    <Settings className="w-5 h-5" />
-                    <span className="text-xs">System Config</span>
-                  </Button>
-                  <Button variant="outline" className="h-16 flex flex-col gap-1">
-                    <BarChart3 className="w-5 h-5" />
-                    <span className="text-xs">View Reports</span>
-                  </Button>
-                </>
-              )}
-              <Button variant="outline" className="h-16 flex flex-col gap-1">
-                <Shield className="w-5 h-5" />
-                <span className="text-xs">Approve Requests</span>
-              </Button>
-              <Button variant="outline" className="h-16 flex flex-col gap-1">
-                <MessageSquare className="w-5 h-5" />
-                <span className="text-xs">Team Chat</span>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+      {/* Quick Actions for all users */}
+      <Card className="bg-white/60 backdrop-blur-sm border-white/20">
+        <CardContent className="p-6">
+          <QuickActions layout="grid" showTitle={true} maxActions={8} />
+        </CardContent>
+      </Card>
     </div>
   );
 }
