@@ -20,6 +20,8 @@ interface AuthContextType {
   signup: (email: string, password: string, displayName: string) => Promise<void>;
   logout: () => Promise<void>;
   loginWithGoogle: () => Promise<void>;
+  sendEmailVerification: () => Promise<void>;
+  reloadUser: () => Promise<void>;
   loading: boolean;
 }
 
