@@ -34,6 +34,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { RoleAccess, ManagerOnly } from "@/components/RoleAccess";
 import {
   Dialog,
   DialogContent,
