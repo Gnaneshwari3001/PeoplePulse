@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Sidebar, MobileSidebarTrigger } from "@/components/Sidebar";
 import { RoleBasedDashboard } from "@/components/RoleBasedDashboard";
+import { FloatingActions } from "@/components/FloatingActions";
 
 export default function Index() {
   const { userProfile } = useAuth();
