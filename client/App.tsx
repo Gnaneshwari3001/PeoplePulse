@@ -18,6 +18,7 @@ import HiringHub from "@/pages/HiringHub";
 import GrowthFeedback from "@/pages/GrowthFeedback";
 import ApprovalWorkflow from "@/pages/ApprovalWorkflow";
 import PolicyVault from "@/pages/PolicyVault";
+import EmployeeManagement from "@/pages/EmployeeManagement";
 
 function AuthenticatedApp() {
   const { currentUser } = useAuth();
