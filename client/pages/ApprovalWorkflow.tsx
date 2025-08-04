@@ -959,11 +959,19 @@ export default function ApprovalWorkflow() {
                           {selectedRequests.length} request(s) selected
                         </span>
                         <div className="flex items-center gap-2">
-                          <Button size="sm" className="bg-green-500 hover:bg-green-600">
+                          <Button
+                            size="sm"
+                            className="bg-green-500 hover:bg-green-600"
+                            onClick={() => handleBulkAction("approve")}
+                          >
                             <CheckCircle className="w-4 h-4 mr-1" />
                             Bulk Approve
                           </Button>
-                          <Button size="sm" variant="destructive">
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            onClick={() => handleBulkAction("reject")}
+                          >
                             <XCircle className="w-4 h-4 mr-1" />
                             Bulk Reject
                           </Button>
