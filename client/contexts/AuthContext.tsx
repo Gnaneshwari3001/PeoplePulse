@@ -45,7 +45,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
-  async function signup(email: string, password: string, displayName: string) {
+  async function signup(email: string, password: string, displayName: string, role: UserRole = 'employee', department: Department = 'engineering') {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
     // Update user profile
@@ -53,20 +53,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Send email verification
     await sendEmailVerification(user, {
-      url: window.location.origin + '/dashboard', // Redirect URL after verification
+      url: window.location.origin + '/dashboard',
       handleCodeInApp: true
     });
 
-    // Create user record in database
-    await set(ref(database, `users/${user.uid}`), {
-      email: user.email,
+    // Generate employee ID
+    const employeeId = `EMP${Date.now().toString().slice(-6)}`;
+
+    // Create comprehensive user profile in database
+    const userProfile: UserProfile = {
+      uid: user.uid,
+      email: user.email || '',
       displayName: displayName,
-      createdAt: new Date().toISOString(),
-      role: 'employee',
-      department: '',
-      status: 'pending_verification', // Set status to pending until verified
-      emailVerified: false
-    });
+      role: role,
+      department: department,
+      permissions: [], // Will be populated based on role
+      employeeId: employeeId,
+      joinDate: new Date().toISOString(),
+      status: 'pending_verification',
+    };
+
+    await set(ref(database, `users/${user.uid}`), userProfile);
   }
 
   async function login(email: string, password: string) {
