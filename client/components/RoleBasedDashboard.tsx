@@ -304,13 +304,6 @@ export function RoleBasedDashboard() {
         </div>
       </div>
 
-      {/* Top Features - Prominent Action Cards */}
-      <Card className="bg-gradient-to-br from-white to-gray-50 border-white/20 shadow-xl">
-        <CardContent className="p-8">
-          <TopFeatures />
-        </CardContent>
-      </Card>
-
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {getQuickStats().map((stat, index) => (
