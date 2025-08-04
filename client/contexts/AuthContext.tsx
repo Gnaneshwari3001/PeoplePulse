@@ -41,10 +41,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function signup(email: string, password: string, displayName: string) {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
-    
+
     // Update user profile
     await updateProfile(user, { displayName });
-    
+
+    // Send email verification
+    await sendEmailVerification(user, {
+      url: window.location.origin + '/dashboard', // Redirect URL after verification
+      handleCodeInApp: true
+    });
+
     // Create user record in database
     await set(ref(database, `users/${user.uid}`), {
       email: user.email,
@@ -52,7 +58,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       createdAt: new Date().toISOString(),
       role: 'employee',
       department: '',
-      status: 'active'
+      status: 'pending_verification', // Set status to pending until verified
+      emailVerified: false
     });
   }
 
