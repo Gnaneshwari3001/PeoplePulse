@@ -62,7 +62,7 @@ export function Login() {
           description: "You've successfully logged in to PeoplePulse."
         });
       } else {
-        await signup(email, password, displayName);
+        await signup(email, password, displayName, selectedRole, selectedDepartment);
         toast({
           title: "Account Created!",
           description: "Please check your email and verify your account to continue."
