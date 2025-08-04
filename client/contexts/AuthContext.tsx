@@ -130,11 +130,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await reload(currentUser);
       // Update database record if email is now verified
       if (currentUser.emailVerified) {
-        await set(ref(database, `users/${currentUser.uid}/emailVerified`), true);
         await set(ref(database, `users/${currentUser.uid}/status`), 'active');
+      }
+      // Reload user profile
+      await loadUserProfile(currentUser);
+    }
+  }
+
+  async function loadUserProfile(user: User) {
+    if (user) {
+      const userRef = ref(database, `users/${user.uid}`);
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        setUserProfile(snapshot.val() as UserProfile);
       }
     }
   }
+
+  async function updateUserProfile(updates: Partial<UserProfile>) {
+    if (currentUser && userProfile) {
+      const updatedProfile = { ...userProfile, ...updates };
+      await set(ref(database, `users/${currentUser.uid}`), updatedProfile);
+      setUserProfile(updatedProfile);
+    }
+  }
+
+  const checkPermission = (module: string, action: string): boolean => {
+    if (!userProfile) return false;
+    return hasPermission(userProfile.role, module, action);
+  };
+
+  const checkModuleAccess = (module: string): boolean => {
+    if (!userProfile) return false;
+    return canAccessModule(userProfile.role, module);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
