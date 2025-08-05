@@ -42,6 +42,9 @@ const getAllMenuItems = () => [
   { icon: TrendingUp, label: "Growth & Feedback", path: "/growth", color: "from-violet-500 to-violet-600", badge: "Due", permission: "growth_feedback", roles: ["all"] },
   { icon: GitBranch, label: "Approval Workflow", path: "/workflow", color: "from-blue-500 to-indigo-600", badge: "3", urgent: true, permission: "approval_workflow", roles: ["department_manager", "team_lead", "hr_manager", "admin"] },
   { icon: Users, label: "Employee Management", path: "/employees", color: "from-emerald-500 to-emerald-600", badge: "HR", permission: "employees", roles: ["hr_manager", "admin"] },
+  { icon: Megaphone, label: "Send Announcements", path: "/announcements", color: "from-orange-500 to-orange-600", permission: "announcements", roles: ["team_lead", "department_manager", "hr_manager", "admin"] },
+  { icon: Database, label: "Bulk Import", path: "/bulk-import", color: "from-purple-500 to-purple-600", badge: "CSV", permission: "bulk_import", roles: ["hr_manager", "admin"] },
+  { icon: Settings, label: "Settings", path: "/settings", color: "from-gray-500 to-gray-600", permission: "settings", roles: ["admin"] },
   { icon: Headphones, label: "Support & Helpdesk", path: "/support", color: "from-slate-500 to-slate-600", badge: "1", permission: "support", roles: ["all"] },
 ];
 
