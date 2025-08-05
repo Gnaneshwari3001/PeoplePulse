@@ -81,7 +81,10 @@ function AuthenticatedApp() {
           <Route path="/support" element={<SupportHelpdesk />} />
           <Route path="/workflow" element={<ApprovalWorkflow />} />
           <Route path="/employees" element={<EmployeeManagement />} />
+          <Route path="/announcements" element={<SendAnnouncement />} />
+          <Route path="/bulk-import" element={<BulkImport />} />
           <Route path="/admin/analytics" element={<Analytics />} />
+          <Route path="/settings" element={<PlaceholderPage module="Settings" description="System configuration and preferences" />} />
           <Route
             path="/verification-success"
             element={<VerificationSuccess />}
