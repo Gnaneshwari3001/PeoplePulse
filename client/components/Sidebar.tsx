@@ -1,9 +1,9 @@
-import { 
-  CheckSquare, 
-  Users, 
-  MessageSquare, 
-  Receipt, 
-  DollarSign, 
+import {
+  CheckSquare,
+  Users,
+  MessageSquare,
+  Receipt,
+  DollarSign,
   Clock,
   FileText,
   FolderOpen,
@@ -15,7 +15,10 @@ import {
   ChevronRight,
   Home,
   Menu,
-  GitBranch
+  GitBranch,
+  Settings,
+  Megaphone,
+  Database
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
