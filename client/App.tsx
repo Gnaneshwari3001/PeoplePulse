@@ -20,6 +20,8 @@ import ApprovalWorkflow from "@/pages/ApprovalWorkflow";
 import PolicyVault from "@/pages/PolicyVault";
 import EmployeeManagement from "@/pages/EmployeeManagement";
 import Analytics from "@/pages/Analytics";
+import SendAnnouncement from "@/pages/SendAnnouncement";
+import BulkImport from "@/pages/BulkImport";
 
 function AuthenticatedApp() {
   const { currentUser } = useAuth();
